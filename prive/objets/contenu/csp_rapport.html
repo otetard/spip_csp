@@ -1,0 +1,29 @@
+<BOUCLE_csp_rapport(CSP_RAPPORTS){id_csp_rapport}>
+
+
+[<div class="champ contenu_document_uri[ (#DOCUMENT_URI*|strlen|?{'',vide})]">
+	<div class="label"><:csp:label_document_uri:> : </div>
+	<span dir='#LANG_DIR' class='#EDIT{document_uri} document_uri'>(#DOCUMENT_URI)</span>
+</div>]
+
+
+[<div class="champ contenu_blocked_uri[ (#BLOCKED_URI*|strlen|?{'',vide})]">
+	<div class="label"><:csp:label_blocked_uri:> : </div>
+	<span dir='#LANG_DIR' class='#EDIT{blocked_uri} blocked_uri'>(#BLOCKED_URI)</span>
+</div>]
+
+[<div class="champ contenu_date[ (#DATE*|strlen|?{'',vide})]">
+	<div class="label"><:csp:label_date:> : </div>
+	<span dir='#LANG_DIR' class='#EDIT{date} date'>(#DATE)</span>
+</div>]
+
+<BOUCLE_rapport(DATA){source json, #RAPPORT}>
+	<div class="champ contenu_#CLE[ (#CLE*|strlen|?{'',vide})]">
+		<div class="label">#CLE : </div>
+		<span dir='#LANG_DIR' class="#CLE">
+			#VALEUR
+		</span>
+	</div>
+</BOUCLE_rapport>
+
+</BOUCLE_csp_rapport>

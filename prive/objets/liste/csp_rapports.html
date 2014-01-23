@@ -1,0 +1,34 @@
+[(#SET{defaut_tri,#ARRAY{
+	blocked_uri,-1,
+	document_uri,-1,
+	id_csp_rapport,-1,
+	date,-1,
+}})] <B_liste_csp_rapports>
+#ANCRE_PAGINATION
+<div class="liste-objets csp_rapports">
+<table class='spip liste'>
+	[<caption><strong class="caption">(#ENV*{titre,#GRAND_TOTAL|singulier_ou_pluriel{csp_rapport:info_1_csp_rapport,csp_rapport:info_nb_csp_rapports}})</strong></caption>]
+	<thead>
+		<tr class='first_row'>
+			<th class="id" scope="col">[(#TRI{id_souscription,<:info_numero_abbreviation:>,ajax})]</th>
+			<th class="document_uri" scope="col">[(#TRI{document_uri,<:csp:info_document_uri:>,ajax})]</th>
+			<th class="blocked_uri" scope="col">[(#TRI{blocked_uri,<:csp:info_blocked_uri:>,ajax})]</th>
+			<th class='date' scope='col'>[(#TRI{date,<:date:>,ajax})]</th>
+		</tr>
+	</thead>
+	<tbody>
+	<BOUCLE_liste_csp_rapports(CSP_RAPPORTS){tri #ENV{par, id_csp_rapport}, #GET{defaut_tri}}{pagination #ENV{nb,10}}>
+		<tr class='[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]'>
+			<td class='id principale'><a href="[(#ID_CSP_RAPPORT|generer_url_entite{csp_rapport})]" title="<:info_numero_abbreviation|attribut_html:> #ID_CSP_RAPPORT">#ID_CSP_RAPPORT</a></td>
+			<td class="document_uri">#DOCUMENT_URI</td>
+			<td class="blocked_uri">#BLOCKED_URI</td>
+			<td class='date secondaire'>[(#DATE|affdate_jourcourt)]</td>
+		</tr>
+	</BOUCLE_liste_csp_rapports>
+	</tbody>
+</table>
+[<p class='pagination'>(#PAGINATION{prive})</p>]
+</div>
+</B_liste_csp_rapports>[
+<div class="liste-objets csp_rapports caption-wrap"><strong class="caption">(#ENV*{sinon,''})</strong></div>
+]<//B_liste_csp_rapports>

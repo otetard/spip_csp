@@ -1,0 +1,29 @@
+<paquet
+	prefix="csp"
+	categorie="performance"
+	version="0.1.0"
+	etat="dev"
+	compatibilite="[3.0.14;3.0.*]"
+	logo="prive/themes/spip/images/csp-64.png"
+	documentation=""
+        schema="0.1.0"
+>
+	<nom>Content Security Policy</nom>
+
+	<auteur lien='http://olivier.miskin.fr'>Olivier Tétard</auteur>
+
+	<licence>GNU/GPL v3</licence>
+	<necessite nom="saisies"  compatibilite="[1.24.0;]" />
+
+	<lib nom="select2" lien="https://github.com/ivaynberg/select2/archive/3.4.5.zip" />
+
+	<pipeline nom="autoriser" inclure="csp_autorisations.php" />
+	<pipeline nom="declarer_tables_objets_sql" inclure="base/csp.php" />
+	<pipeline nom="declarer_tables_interfaces" inclure="base/csp.php" />
+	<pipeline nom="affichage_entetes_final" inclure="csp_pipelines.php" />
+	<pipeline nom="jquery_plugins" inclure="csp_pipelines.php" />
+	<pipeline nom="header_prive_css" inclure="csp_pipelines.php" />
+
+	<menu nom="csp_rapports" titre="csp_rapport:titre_csp_rapports" parent="menu_administration" icone="images/csp_rapport-16.png" action="csp_rapports" />
+	<menu nom="csp" titre="csp:titre_configurer_csp" parent="menu_configuration" icone="images/csp_rapport-16.png" action="configurer_csp"/>
+</paquet>
