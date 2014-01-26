@@ -1,123 +1,123 @@
 <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
 
-	<h3 class="titrem"><:csp:cfg_titre_parametrages:></h3>
+    <h3 class="titrem"><:csp:cfg_titre_parametrages:></h3>
 
-	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
-	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
 
-	<form method="post" action="#ENV{action}">
+    <form method="post" action="#ENV{action}">
 	<div>
-		#ACTION_FORMULAIRE{#ENV{action}}
+	    #ACTION_FORMULAIRE{#ENV{action}}
 
-		<ul>
-			#SET{name,activer}#SET{obli,''}#SET{defaut,'off'}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-			<li class="editer pleine_largeur editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">[
+	    <ul>
+		#SET{name,activer}#SET{obli,''}#SET{defaut,'off'}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+		<li class="editer pleine_largeur editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">[
+		    <span class='erreur_message'>(#GET{erreurs})</span>
+		    ]
+		    #SET{val,off}
+		    <input type="hidden" name="#GET{name}" value="#GET{val}" />
+		    #SET{val,on}
+		    <div class="choix">
+			<input type="checkbox" name="#GET{name}" class="checkbox" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+			<label for="#GET{name}_#GET{val}"><:csp:label_activer_csp:></label>
+		    </div>
+		</li>
+
+		<li class="suite fieldset csp_options[(#ENV{activer,off}|=={on}|non)none]">
+		    <fieldset>
+			<legend><:csp:label_options_generales:></legend>
+			<ul>
+			    #SET{name,filtrage_impose}#SET{obli,''}#SET{defaut,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+			    <li class="editer pleine_largeur editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">[
 				<span class='erreur_message'>(#GET{erreurs})</span>
 				]
 				#SET{val,off}
 				<input type="hidden" name="#GET{name}" value="#GET{val}" />
 				#SET{val,on}
 				<div class="choix">
-					<input type="checkbox" name="#GET{name}" class="checkbox" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
-					<label for="#GET{name}_#GET{val}"><:csp:label_activer_csp:></label>
+				    <input type="checkbox" name="#GET{name}" class="checkbox" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+				    <label for="#GET{name}_#GET{val}"><:csp:label_filtrage_impose:></label>
 				</div>
-			</li>
+			    </li>
 
-			<li class="suite fieldset csp_options[(#ENV{activer,off}|=={on}|non)none]">
-				<fieldset>
-					<legend><:csp:label_options_generales:></legend>
-					<ul>
-						#SET{name,filtrage_impose}#SET{obli,''}#SET{defaut,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-						<li class="editer pleine_largeur editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">[
-							<span class='erreur_message'>(#GET{erreurs})</span>
-							]
-							#SET{val,off}
-							<input type="hidden" name="#GET{name}" value="#GET{val}" />
-							#SET{val,on}
-							<div class="choix">
-								<input type="checkbox" name="#GET{name}" class="checkbox" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
-								<label for="#GET{name}_#GET{val}"><:csp:label_filtrage_impose:></label>
-							</div>
-						</li>
+			    #SET{name,console_activer}#SET{obli,''}#SET{defaut,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+			    <li class="editer pleine_largeur editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">[
+				<span class='erreur_message'>(#GET{erreurs})</span>
+				]
+				#SET{val,off}
+				<input type="hidden" name="#GET{name}" value="#GET{val}" />
+				#SET{val,on}
+				<div class="choix">
+				    <input type="checkbox" name="#GET{name}" class="checkbox" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+				    <label for="#GET{name}_#GET{val}"><:csp:label_console_activer:></label>
+				</div>
+			    </li>
 
-						#SET{name,console_activer}#SET{obli,''}#SET{defaut,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-						<li class="editer pleine_largeur editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">[
-							<span class='erreur_message'>(#GET{erreurs})</span>
-							]
-							#SET{val,off}
-							<input type="hidden" name="#GET{name}" value="#GET{val}" />
-							#SET{val,on}
-							<div class="choix">
-								<input type="checkbox" name="#GET{name}" class="checkbox" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
-								<label for="#GET{name}_#GET{val}"><:csp:label_console_activer:></label>
-							</div>
-						</li>
+			    #SET{name,autoriser_eval}#SET{obli,''}#SET{defaut,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+			    <li class="editer pleine_largeur editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">[
+				<span class='erreur_message'>(#GET{erreurs})</span>
+				]
+				#SET{val,off}
+				<input type="hidden" name="#GET{name}" value="#GET{val}" />
+				#SET{val,on}
+				<div class="choix">
+				    <input type="checkbox" name="#GET{name}" class="checkbox" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+				    <label for="#GET{name}_#GET{val}"><:csp:label_autoriser_eval:></label>
+				</div>
+			    </li>
 
-						#SET{name,autoriser_eval}#SET{obli,''}#SET{defaut,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-						<li class="editer pleine_largeur editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">[
-							<span class='erreur_message'>(#GET{erreurs})</span>
-							]
-							#SET{val,off}
-							<input type="hidden" name="#GET{name}" value="#GET{val}" />
-							#SET{val,on}
-							<div class="choix">
-								<input type="checkbox" name="#GET{name}" class="checkbox" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
-								<label for="#GET{name}_#GET{val}"><:csp:label_autoriser_eval:></label>
-							</div>
-						</li>
-
-						#SET{name,autoriser_inline}#SET{obli,''}#SET{defaut,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-						<li class="editer pleine_largeur editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">[
-							<span class='erreur_message'>(#GET{erreurs})</span>
-							]
-							#SET{val,off}
-							<input type="hidden" name="#GET{name}" value="#GET{val}" />
-							#SET{val,on}
-							<div class="choix">
-								<input type="checkbox" name="#GET{name}" class="checkbox" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
-								<label for="#GET{name}_#GET{val}"><:csp:label_autoriser_inline:></label>
-							</div>
-						</li>
+			    #SET{name,autoriser_inline}#SET{obli,''}#SET{defaut,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+			    <li class="editer pleine_largeur editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">[
+				<span class='erreur_message'>(#GET{erreurs})</span>
+				]
+				#SET{val,off}
+				<input type="hidden" name="#GET{name}" value="#GET{val}" />
+				#SET{val,on}
+				<div class="choix">
+				    <input type="checkbox" name="#GET{name}" class="checkbox" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+				    <label for="#GET{name}_#GET{val}"><:csp:label_autoriser_inline:></label>
+				</div>
+			    </li>
 
 
-					</ul>
-				</fieldset>
-				<fieldset>
-					<legend><:csp:label_politique_filtrage:></legend>
-					<ul>
+			</ul>
+		    </fieldset>
+		    <fieldset>
+			<legend><:csp:label_politique_filtrage:></legend>
+			<ul>
 
-						<BOUCLE_filtres(DATA){liste defaut,script,object,style,img,frame,connect,font,media}>
-						#SET{name,filtrer_#VALEUR}#SET{obli,''}#SET{defaut,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-						<li class="editer pleine_largeur activer_filtre editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">[
-							<span class='erreur_message'>(#GET{erreurs})</span>
-							]
-							#SET{val,off}
-							<input type="hidden" name="#GET{name}" value="#GET{val}" />
-							#SET{val,on}
-							<div class="choix">
-								<input type="checkbox" name="#GET{name}" class="checkbox" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
-								<label for="#GET{name}_#GET{val}">[(#VAL{csp:label_filtrer_}|concat{#VALEUR}|_T)]</label>
-							</div>
-						</li>
+			    <BOUCLE_filtres(DATA){liste defaut,script,object,style,img,frame,connect,font,media}>
+				#SET{name,filtrer_#VALEUR}#SET{obli,''}#SET{defaut,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<li class="editer pleine_largeur activer_filtre editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">[
+				    <span class='erreur_message'>(#GET{erreurs})</span>
+				    ]
+				    #SET{val,off}
+				    <input type="hidden" name="#GET{name}" value="#GET{val}" />
+				    #SET{val,on}
+				    <div class="choix">
+					<input type="checkbox" name="#GET{name}" class="checkbox" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+					<label for="#GET{name}_#GET{val}">[(#VAL{csp:label_filtrer_}|concat{#VALEUR}|_T)]</label>
+				    </div>
+				</li>
 
-						#SET{name,filtre_#VALEUR}#SET{obli,''}#SET{defaut,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-						<li class="editer pleine_largeur filtre editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur][(#ENV{filtrer_#VALEUR,off}|=={on}|non)none]">
-							<label for="#GET{name}"><:csp:label_filtre:></label>[
-							<span class='erreur_message'>(#GET{erreurs})</span>
-							]<input style="width: 100%;" type="text" name="#GET{name}" class="text filtre_csp" value="#ENV*{#GET{name},#GET{defaut}}" id="#GET{name}" [(#HTML5|et{#GET{obli}})required='required']/>
-						</li>
+				#SET{name,filtre_#VALEUR}#SET{obli,''}#SET{defaut,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<li class="editer pleine_largeur filtre editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur][(#ENV{filtrer_#VALEUR,off}|=={on}|non)none]">
+				    <label for="#GET{name}"><:csp:label_filtre:></label>[
+				    <span class='erreur_message'>(#GET{erreurs})</span>
+				    ]<input style="width: 100%;" type="text" name="#GET{name}" class="text filtre_csp" value="#ENV*{#GET{name},#GET{defaut}}" id="#GET{name}" [(#HTML5|et{#GET{obli}})required='required']/>
+				</li>
 
-						</BOUCLE_filtres>
-					</ul>
-				</fieldset>
-			</li>
-		</ul>
+			    </BOUCLE_filtres>
+			</ul>
+		    </fieldset>
+		</li>
+	    </ul>
 
 
-		<input type="hidden" name="_meta_casier" value="csp" />
-		<p class="boutons"><span class="image_loading">&nbsp;</span><input type="submit" class="submit" value="<:bouton_enregistrer:>" /></p>
+	    <input type="hidden" name="_meta_casier" value="csp" />
+	    <p class="boutons"><span class="image_loading">&nbsp;</span><input type="submit" class="submit" value="<:bouton_enregistrer:>" /></p>
 	</div>
-	</form>
+    </form>
 </div>
 
 <script type="text/javascript">
@@ -141,7 +141,6 @@ jQuery(function(){
 		jQuery(me).hide('fast');
 	})
     })
-
 });
 
 $(document).ready(function() {
