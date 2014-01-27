@@ -71,11 +71,12 @@ function csp_affichage_entetes_final($entetes){
 			$policy['script-src'] .= " 'unsafe-eval'";
 
 		/* Autorisation de l'appel aux scripts inline */
-		if(lire_config('csp/autoriser_inline') == "on") {
+		if(lire_config('csp/autoriser_script_inline') == "on")
 			$policy['script-src'] .= " 'unsafe-inline'";
-			$policy['style-src'] .= " 'unsafe-inline'";
-		}
 
+		/* Autorisation de l'appel aux styles inline */
+		if(lire_config('csp/autoriser_style_inline') == "on")
+			$policy['style-src'] .= " 'unsafe-inline'";
 
 		/* Activation de la console CSP */
 		if(lire_config('csp/console_activer') == 'on') {
