@@ -106,16 +106,31 @@
 				    <input type="hidden" name="#GET{name}" value="#GET{val}" />
 				    #SET{val,on}
 				    <div class="choix">
-					<input type="checkbox" name="#GET{name}" class="checkbox" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+					<input type="checkbox" name="#GET{name}" class="checkbox activer_filtre_checkbox" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
 					<label for="#GET{name}_#GET{val}">[(#VAL{csp:label_filtrer_}|concat{#VALEUR}|_T)]</label>
 				    </div>
-				</li>
 
-				#SET{name,filtre_#VALEUR}#SET{obli,''}#SET{defaut,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-				<li class="editer pleine_largeur filtre editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur][(#ENV{filtrer_#VALEUR,off}|=={on}|non)none]">
-				    <label for="#GET{name}"><:csp:label_filtre:></label>[
-				    <span class='erreur_message'>(#GET{erreurs})</span>
-				    ]<input style="width: 100%;" type="text" name="#GET{name}" class="text filtre_csp" value="#ENV*{#GET{name},#GET{defaut}}" id="#GET{name}" [(#HTML5|et{#GET{obli}})required='required']/>
+				    <ul class="filtre_bloc bloc_filtre_#VALEUR[(#ENV{filtrer_#VALEUR,off}|=={on}|non)none]">
+					#SET{name,filtre_autoriser_self_#VALEUR}#SET{obli,''}#SET{defaut,'on'}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+					<li class="editer pleine_largeur filtre_self editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">[
+					    <span class='erreur_message'>(#GET{erreurs})</span>
+					    ]
+					    #SET{val,off}
+					    <input type="hidden" name="#GET{name}" value="#GET{val}" />
+					    #SET{val,on}
+					    <div class="choix">
+						<input type="checkbox" name="#GET{name}" class="checkbox" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+						<label for="#GET{name}_#GET{val}"><:csp:label_filtre_autoriser_self:></label>
+					    </div>
+					</li>
+					
+					#SET{name,filtre_#VALEUR}#SET{obli,''}#SET{defaut,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+					<li class="editer pleine_largeur filtre_domaines editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+					    <label for="#GET{name}"><:csp:label_filtre:></label>[
+					    <span class='erreur_message'>(#GET{erreurs})</span>
+					    ]<input style="width: 100%;" type="text" name="#GET{name}" class="text filtre_csp" value="#ENV*{#GET{name},#GET{defaut}}" id="#GET{name}" [(#HTML5|et{#GET{obli}})required='required']/>
+					</li>
+				    </ul>
 				</li>
 
 			    </BOUCLE_filtres>
@@ -142,9 +157,9 @@ jQuery(function(){
 	})
     });
 
-    jQuery(".filtre").each(function(){
+    jQuery(".filtre_bloc").each(function(){
 	var me=this;
-	jQuery(me).prev(".activer_filtre").find("input.checkbox").click(function(){
+	jQuery(me).prev().find("input.activer_filtre_checkbox").click(function(){
 	    if (jQuery(this).prop("checked"))
 		jQuery(me).show('fast');
 	    else
@@ -168,5 +183,5 @@ $(document).ready(function() {
 input.checkbox:checked+label {font-weight: bold;}
 li.fieldset.csp_options {margin-bottom: 1em}
 .formulaire_spip ul.select2-choices li { clear: inherit; }
-li.filtre { margin-left: 40px; }
+ul.filtre_bloc { margin-left: 20px !important; }
 </style>
