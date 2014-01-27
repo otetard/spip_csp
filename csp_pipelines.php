@@ -77,6 +77,7 @@ function csp_affichage_entetes_final($entetes){
 		}
 
 
+		/* Activation de la console CSP */
 		if(lire_config('csp/console_activer') == 'on') {
 			$policy["report-uri"] = generer_url_action('collecteur_csp', "", true, true);
 		}
@@ -93,8 +94,3 @@ function csp_affichage_entetes_final($entetes){
 
         return $entetes;
 }
-
-
-
-/* options eval-script; report-uri https://twitter.com/scribes/csp_report; allow https://\*; */
-/* img-src https://\* data: ; script-src https://\*.twitter.com https://\*.twimg.com https://\*.vine.co eval-script ; frame-src https://\* chrome-extension: about: javascript: */
