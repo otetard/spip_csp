@@ -169,9 +169,9 @@ jQuery(function(){
 });
 
 $(document).ready(function() {
-    $(".filtre_csp").each(function() { 
+    $(".filtre_csp").each(function() {
 	$(this).select2({
-	    tags: ["'self'", "'none'", "http://*", "https://*"],
+	    tags: ["'none'", "http://*", "https://*"],
 	    tokenSeparators: [",", " "]
 	})
     });
