@@ -97,7 +97,7 @@
 			<legend><:csp:label_politique_filtrage:></legend>
 			<ul>
 
-			    <BOUCLE_filtres(DATA){liste defaut,script,object,style,img,frame,connect,font,media}>
+			    <BOUCLE_filtres(DATA){liste default,script,object,style,img,frame,connect,font,media}>
 				#SET{name,filtrer_#VALEUR}#SET{obli,''}#SET{defaut,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 				<li class="editer pleine_largeur activer_filtre editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">[
 				    <span class='erreur_message'>(#GET{erreurs})</span>
