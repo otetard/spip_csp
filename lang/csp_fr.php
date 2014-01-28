@@ -16,6 +16,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_exemple_explication' => 'Explication de cet exemple',
 	'cfg_titre_parametrages' => 'Paramétrages',
 
+	// E
+	'erreur_format_domaine' => 'Format invalide pour une des entrées',
 
 	// I
 	'icone_creer_csp_rapport' => 'Créer un rapport csp',

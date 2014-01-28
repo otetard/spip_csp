@@ -58,3 +58,33 @@ function csp_obtenir_politique() {
 	return $policy_str;
 }
 
+
+
+/*
+ * Cette fonction permet de vérifier la syntaxe d'une 'source' (au du
+ * standard).
+ *
+ * Le standard (<http://www.w3.org/TR/CSP/#source-list>) spécifie le
+ * format suivant. Remarque, ici on ne prend pas en compte les «
+ * keywords » qui ne passent pas par cette fonction.
+ *
+ * source-list       = *WSP [ source-expression *( 1*WSP source-expression ) *WSP ]
+ *                   / *WSP "'none'" *WSP
+ * source-expression = scheme-source / host-source / keyword-source
+ * scheme-source     = scheme ":"
+ * host-source       = [ scheme "://" ] host [ port ]
+ * ext-host-source   = host-source "/" *( <VCHAR except ";" and ","> )
+ *                   ; ext-host-source is reserved for future use.
+ * keyword-source    = "'self'" / "'unsafe-inline'" / "'unsafe-eval'"
+ * scheme            = <scheme production from RFC 3986>
+ * host              = "*" / [ "*." ] 1*host-char *( "." 1*host-char )
+ * host-char         = ALPHA / DIGIT / "-"
+ * port              = ":" ( 1*DIGIT / "*" )
+ */
+function verifier_syntaxe_regle($rule) {
+	$scheme = "[a-zA-Z][a-zA-Z0-9\+\-\.]*";
+	$host = "(\*|(\*\.)?[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]+)*)";
+	$port = "[0-9]+";
+
+	return preg_match("/^{$scheme}:|({$scheme}:\/\/)?${host}(:{$port})?$/", $rule);
+}
