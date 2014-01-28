@@ -45,7 +45,6 @@ function csp_affichage_entetes_final($entetes) {
         if(lire_config('csp/activer') == 'on') {
 		$policy_str = csp_obtenir_politique();
 
-		$policy_str = implode('; ', array_map(function ($v, $k) { return $k . ' ' . $v; }, $policy, array_keys($policy)));
 
 		spip_log("Content-Security-Policy: $policy_str");
 
