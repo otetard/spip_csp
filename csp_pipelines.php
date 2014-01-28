@@ -43,15 +43,14 @@ function csp_affichage_entetes_final($entetes) {
                 include_spip('inc/config');
 
         if(lire_config('csp/activer') == 'on') {
-		$policy_str = csp_obtenir_politique();
+		$politique = csp_obtenir_politique();
 
-
-		spip_log("Content-Security-Policy: $policy_str");
+		spip_log("Content-Security-Policy: $politique");
 
 		if(lire_config('csp/filtrage_impose') == "on")
-			$entetes['Content-Security-Policy'] = $policy_str;
+			$entetes['Content-Security-Policy'] = $politique;
 		else
-			$entetes['Content-Security-Policy-Report-Only'] = $policy_str;
+			$entetes['Content-Security-Policy-Report-Only'] = $politique;
         }
 
         return $entetes;
