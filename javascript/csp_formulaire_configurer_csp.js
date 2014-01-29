@@ -34,9 +34,23 @@ jQuery(function(){
 $(document).ready(function() {
     $(".filtre_csp").each(function() {
 	$(this).select2({
-	    tags: ["'none'", "http://*", "https://*"],
-	    tokenSeparators: [",", " "]
+	    tags: [
+		'data:',
+		'chrome-extension:',
+		'about:',
+		'javascript:',
+		'https://*.twitter.com',
+		'https://*.twimg.com',
+		'https://*.vine.co',
+		'https://*.akamaihd.net',
+		'https://*.googleapis.com',
+		'https://*.google-analytics.com',
+		'https://*.ak.fbcdn.net',
+	    ],
+
+	    tokenSeparators: [","]
 	})
     });
 
 });
+
