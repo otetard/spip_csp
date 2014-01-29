@@ -24,18 +24,18 @@ function csp_obtenir_politique() {
 		}
 	}
 
-	/* Autorisation de l'appel à la fonction eval() */
-	if(lire_config('csp/filtrer_script')  == "on" && lire_config('csp/autoriser_eval') == "on")
-		$policy['script-src'][] = "'unsafe-eval'";
+			/* -- Cas particulier pour les scripts --
+			 * Autorisation de l'appel à la fonction eval() */
+			if(lire_config("csp/autoriser_eval_{$type}") == "on")
+				$policy["{$type}-src"][] = "'unsafe-eval'";
 
-	/* Autorisation de l'appel aux scripts inline */
-	if(lire_config('csp/filtrer_script') == "on" && lire_config('csp/autoriser_script_inline') == "on")
-		$policy['script-src'][] = "'unsafe-inline'";
+			/* -- Cas particuliers pour les scripts et les styles --
+			 * Autorisation de l'appel aux scripts/styles inline */
+			if(lire_config("csp/autoriser_inline_{$type}") == "on")
+				$policy["{$type}-src"][] = "'unsafe-inline'";
+		}
+	}
 
-	/* Autorisation de l'appel aux styles inline */
-	if(lire_config('csp/filtrer_style') == "on" && lire_config('csp/autoriser_style_inline') == "on")
-		$policy['style-src'][] = "'unsafe-inline'";
-	
 	/* Activation de la console CSP */
 	if(lire_config('csp/console_activer') == 'on') {
 		$policy["report-uri"][] = generer_url_action('collecteur_csp', "", true, true);
