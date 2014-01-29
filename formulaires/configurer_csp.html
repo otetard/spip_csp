@@ -142,6 +142,24 @@
 			    </BOUCLE_filtres>
 			</ul>
 		    </fieldset>
+		    <fieldset>
+			<legend><:csp:label_options_avancee:></legend>
+			<p><:csp:explication_fonctions_avancees:></p>
+			<ul>
+			    #SET{name,activer_meta}#SET{obli,''}#SET{defaut,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+			    <li class="editer pleine_largeur editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">[
+				<span class='erreur_message'>(#GET{erreurs})</span>
+				]
+				#SET{val,off}
+				<input type="hidden" name="#GET{name}" value="#GET{val}" />
+				#SET{val,on}
+				<div class="choix">
+				    <input type="checkbox" name="#GET{name}" class="checkbox" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+				    <label for="#GET{name}_#GET{val}"><:csp:label_activer_meta:></label>
+				</div>
+			    </li>
+			</ul>
+		    </fieldset>
 		</li>
 	    </ul>
 

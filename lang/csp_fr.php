@@ -19,6 +19,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// E
 	'erreur_format_domaine' => 'Format invalide pour une des entrées',
+	'explication_fonctions_avancees' => 'Ces fonctions permettent d’utiliser certains fonctionnalités non encore proposées dans une version stable du standard <t>Content Security Policy</i>. Elle ne fonctionnent donc pas avec tous les navigateurs.',
 
 	// I
 	'icone_creer_csp_rapport' => 'Créer un rapport csp',
@@ -32,6 +33,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// L
 	'label_activer_csp' => 'Activer Content Security Policy',
+	'label_activer_meta' => 'Utiliser une balise <tt>&lt;meta&gt;</tt> plutôt qu’une en-tête HTTP (CSP 1.1)',
 	'label_autoriser_eval' => 'Accepter la directive « <tt>eval()</tt> »',
 	'label_autoriser_script_inline' => 'Accepter les scripts en ligne',
 	'label_autoriser_style_inline' => 'Accepter les styles en ligne',
@@ -51,6 +53,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_filtrer_object' => 'Filtrer les objets (Flash)',
 	'label_filtrer_script' => 'Filtrer les scripts',
 	'label_filtrer_style' => 'Filtrer les styles CSS',
+	'label_options_avancee' => 'Options avancées',
 	'label_options_generales' => 'Options générales',
 	'label_politique_filtrage' => 'Politique de filtrage',
 	'label_rapport' => 'Rapport',

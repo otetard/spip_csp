@@ -42,7 +42,7 @@ function csp_affichage_entetes_final($entetes) {
         if(!function_exists('lire_config'))
                 include_spip('inc/config');
 
-        if(lire_config('csp/activer') == 'on') {
+        if(lire_config('csp/activer') == 'on' && lire_config('csp/activer_meta', 'off') == 'off') {
 		$politique = csp_obtenir_politique();
 
 		spip_log("Content-Security-Policy: $politique");
@@ -54,4 +54,37 @@ function csp_affichage_entetes_final($entetes) {
         }
 
         return $entetes;
+}
+
+/**
+ * Insertion dans le pipeline insert_head (SPIP)
+ *
+ * Intégration de la politique de sécurité CSP via une en-tête <meta>
+ * dans l'en-tête HTML, avant l'envoi des données au client.
+ *
+ * @param string $flux
+ *              Le contenu des en-têtes HTTP
+ * @return string $flux
+ *              Le contenu des en-têtes HTTP modifié
+ */
+function csp_insert_head($flux) {
+	include_spip('csp_fonctions');
+		
+	if(!function_exists('lire_config'))
+		include_spip('inc/config');
+			
+	if(lire_config('csp/activer') == 'on' && lire_config('csp/activer_meta', 'off') == 'on') {
+		$politique = csp_obtenir_politique();
+
+		spip_log("Content-Security-Policy: $politique");
+		
+		if(lire_config('csp/filtrage_impose') == "on")
+			$type_meta = "Content-Security-Policy";
+		else
+			$type_meta = "Content-Security-Policy-Report-Only";
+
+		$flux .= "<meta http-equiv=\"{$type_meta}\" content=\"{$politique}\" />";
+	}
+
+        return $flux;
 }
