@@ -34,7 +34,7 @@ function csp_autoriser(){}
 **/
 function autoriser_csprapports_menu_dist($faire, $type, $id, $qui, $opt){
 	return true;
-} 
+}
 
 
 /**
@@ -48,7 +48,7 @@ function autoriser_csprapports_menu_dist($faire, $type, $id, $qui, $opt){
  * @return bool          true s'il a le droit, false sinon
 **/
 function autoriser_csprapport_creer_dist($faire, $type, $id, $qui, $opt) {
-	return true; 
+	return true;
 }
 
 /**

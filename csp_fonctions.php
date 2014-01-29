@@ -4,7 +4,7 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 function csp_obtenir_politique() {
         if(!function_exists('lire_config'))
                 include_spip('inc/config');
-	
+
 	$policy = array();
 
 	/* Application des filtres */
@@ -21,8 +21,6 @@ function csp_obtenir_politique() {
 					$policy["{$type}-src"][] = $rule;
 				}
 			}
-		}
-	}
 
 			/* -- Cas particulier pour les scripts --
 			 * Autorisation de l'appel à la fonction eval() */
@@ -40,7 +38,7 @@ function csp_obtenir_politique() {
 	if(lire_config('csp/console_activer') == 'on') {
 		$policy["report-uri"][] = generer_url_action('collecteur_csp', "", true, true);
 	}
-	
+
 	/* Transformation de la politique sous la forme d'une chaine
 	 * de caractères */
 	$policy_str = "";
