@@ -72,6 +72,8 @@
 				    </div>
 
 				    <ul class="filtre_bloc bloc_filtre_#VALEUR[(#ENV{filtrer_#VALEUR,off}|=={on}|non)none]">
+					[(#VALEUR|=={default}|non) <li class="pleine_largeur csp_avertissement [(#ENV{filtrer_default,off}|=={on}|non)none]"><:csp:avertissement_surcharge:></li>]
+				    
 					#SET{name,filtre_autoriser_self_#VALEUR}#SET{obli,''}#SET{defaut,'on'}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 					<li class="editer pleine_largeur filtre_self editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">[
 					    <span class='erreur_message'>(#GET{erreurs})</span>

@@ -9,6 +9,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// A
 	'ajouter_lien_csp_rapport' => 'Ajouter ce rapport csp',
 	'avertissement_configuration' => 'Attention, ce <i>plugin</i> est hautement expérimental. Il est conseillé de bien connaitre CSP avant de commencer à l’utiliser !',
+	'avertissement_surcharge' => 'Attention, ce filtre surchargera <i>entièrement</i> le filtre global que vous avez défini.',
 
 	// C
 	'csp_titre' => 'Content Security Policy',

@@ -17,7 +17,18 @@ jQuery(function(){
 	    else
 		jQuery(me).hide('fast');
 	})
-    })
+    });
+
+    jQuery("input[name='filtrer_default']").on('change', function() {
+	var me = this;
+	jQuery(".filtre_bloc .csp_avertissement").each(function() {
+	    if(jQuery(me).is(":checked")) {
+		jQuery(this).show('fast');
+	    }
+	    else
+		jQuery(this).hide('fast');
+	});
+    });
 });
 
 $(document).ready(function() {
