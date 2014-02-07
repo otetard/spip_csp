@@ -1,7 +1,7 @@
 <paquet
 	prefix="csp"
 	categorie="performance"
-	version="0.2.0"
+	version="0.3.0"
 	etat="dev"
 	compatibilite="[3.0.14;3.0.*]"
 	logo="prive/themes/spip/images/csp-64.png"
