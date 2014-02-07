@@ -34,6 +34,19 @@ function csp_obtenir_politique() {
 		}
 	}
 
+	/* Si l’utilisation d’un nonce est activée, on l’ajoute dans
+	 * la liste des domaines autorisés pour 'script-src' et/ou
+	 * pour 'default-src' */
+	if(lire_config('csp/activer_nonce') == 'on') {
+		$nonce = generer_nonce();
+
+		foreach(array('default', 'script') as $type) {
+			if(lire_config("csp/filtrer_{$type}") == "on") {
+				$policy['$type-src'][] = "'nonce-{$nonce}'";
+			}
+		}
+	}
+
 	/* Activation de la console CSP */
 	if(lire_config('csp/console_activer') == 'on') {
 		$policy["report-uri"][] = generer_url_action('collecteur_csp', "", true, true);
@@ -85,4 +98,16 @@ function verifier_syntaxe_regle($rule) {
 	$port = "[0-9]+";
 
 	return preg_match("/^{$scheme}:|({$scheme}:\/\/)?${host}(:{$port})?$/", $rule);
+}
+
+
+function generer_nonce() {
+	if(isset($_SESSION["csp_hash"]))
+		$nonce = $_SESSION["csp_hash"];
+	else {
+		$nonce = base64_encode(microtime(true).mt_rand(10000,90000));
+		$_SESSION["csp_hash"] = $nonce;
+	}
+
+	return $nonce;
 }

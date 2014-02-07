@@ -34,6 +34,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// L
 	'label_activer_csp' => 'Activer Content Security Policy',
 	'label_activer_meta' => 'Utiliser une balise <tt>&lt;meta&gt;</tt> plutôt qu’une en-tête HTTP (CSP 1.1)',
+	'label_activer_nonce' => 'Utiliser les <i>nonce</i> pour permettre l’inclusion de scripts en ligne (CSP 1.1)',
 	'label_autoriser_eval' => 'Accepter la directive « <tt>eval()</tt> »',
 	'label_autoriser_script_inline' => 'Accepter les scripts en ligne',
 	'label_autoriser_style_inline' => 'Accepter les styles en ligne',

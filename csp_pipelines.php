@@ -88,3 +88,42 @@ function csp_insert_head($flux) {
 
         return $flux;
 }
+
+/**
+ * Insertion dans le pipeline affichage_final (SPIP)
+ *
+ * Modification de *toutes* les balises <script> qui intègrent du code
+ * 'inline' pour leur ajouter l’attribut 'nonce'. Cette technique, en
+ * cours de standardisation dans CSP 1.1 permet ainsi d’exécuter les
+ * scripts 'inline' jugés valides côtés serveur.
+ *
+ * Remarques :
+ *   - le pipeline est n’est ici pas idéal, il prend toutes les
+ *     balises scripts, même celles qui aurait pu être injectées via
+ *     une XSS permanente (elle ne permet par exemple d’empêcher
+ *     l’exploitation de la vulnérabilité corrigée dans SPIP 3.0.14.
+ *   - on utilise ici le pipeline 'affichage_final', ce qui n’est
+ *     clairement pas optimal (pas de mise en cache).
+ *
+ * @param string $flux
+ *              Le contenu HTML de la page
+ * @return string $flux
+ *              Le contenu HTML de la page modifié
+ */
+function csp_affichage_final($flux) {
+	if(lire_config('csp/activer') == 'on' && lire_config('csp/activer_nonce', 'off') == 'on') {
+		include_spip('inc/filtres');
+
+		$balises = extraire_balises($flux, 'script');
+		$balises_nonce = array();
+
+		foreach($balises as $balise) {
+			if(extraire_attribut($balise, 'src') === NULL)
+				$balises_nonce[] = inserer_attribut($balise, 'nonce', generer_nonce());
+		}
+
+		$flux = str_replace($balises, $balises_nonce, $flux);
+	}
+
+	return $flux;
+}
