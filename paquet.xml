@@ -5,7 +5,7 @@
 	etat="dev"
 	compatibilite="[3.0.14;3.0.*]"
 	logo="prive/themes/spip/images/csp-64.png"
-	documentation=""
+	documentation="https://github.com/otetard/spip_csp"
         schema="0.1.0"
 >
 	<nom>Content Security Policy</nom>
